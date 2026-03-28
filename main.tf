@@ -22,3 +22,12 @@ resource "aws_instance" "web_server" {
     Name = "smartops-web-server"
   }
 }
+
+resource "aws_eip" "web_ip" {
+  domain   = "vpc"
+  instance = aws_instance.web_server.id
+
+  tags = {
+    Name = "smartops-web-eip"
+  }
+}
