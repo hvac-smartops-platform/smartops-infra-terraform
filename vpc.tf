@@ -174,14 +174,3 @@ resource "aws_lb_listener" "web_listener" {
     target_group_arn = aws_lb_target_group.web_tg.arn
   }
 }
-resource "aws_lb_target_group_attachment" "web_server_1_attach" {
-  target_group_arn = aws_lb_target_group.web_tg.arn
-  target_id        = aws_instance.web_server.id
-  port             = 80
-}
-
-resource "aws_lb_target_group_attachment" "web_server_2_attach" {
-  target_group_arn = aws_lb_target_group.web_tg.arn
-  target_id        = aws_instance.web_server_2.id
-  port             = 80
-}
