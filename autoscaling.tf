@@ -8,15 +8,17 @@ resource "aws_launch_template" "web_lt" {
     security_groups             = [aws_security_group.web_sg.id]
   }
 
-  user_data = base64encode(<<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              echo "<h1>SmartOps Auto Scaling Server</h1>" > /var/www/html/index.html
-              EOF
-  )
+user_data = base64encode(<<-EOF
+            #!/bin/bash
+            yum update -y
+            amazon-linux-extras install docker -y
+            systemctl start docker
+            systemctl enable docker
+            usermod -aG docker ec2-user
+            docker pull adnan1978/smartops-flask-app:1.0
+            docker run -d -p 5000:5000 --name smartops-flask-app adnan1978/smartops-flask-app:1.0
+            EOF
+)
 
   tag_specifications {
     resource_type = "instance"
