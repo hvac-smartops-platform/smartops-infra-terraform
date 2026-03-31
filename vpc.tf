@@ -86,8 +86,8 @@ resource "aws_security_group" "web_sg" {
 
   ingress {
     description = "HTTP"
-    from_port   = 80
-    to_port     = 80
+    from_port   = 5000
+    to_port     = 5000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -131,7 +131,7 @@ resource "aws_security_group" "alb_sg" {
 
 resource "aws_lb_target_group" "web_tg" {
   name     = "smartops-web-tg"
-  port     = 80
+  port     = 5000
   protocol = "HTTP"
   vpc_id   = aws_vpc.main_vpc.id
 
