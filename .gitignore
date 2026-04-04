@@ -1,15 +1,3 @@
-.terraform/
-*.tfstate
-*.tfstate.*
-crash.log
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-.terraformrc
-terraform.rc
-*.pem
-
 .venv/
 __pycache__/
 *.pyc
@@ -23,6 +11,6 @@ aws/
 eksctl-temp/
 helm-temp/
 *.exe
-
+*.pem
 
 
